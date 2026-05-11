@@ -8,15 +8,15 @@
 /// @param {Struct} stats  An Aircraft_Stats() instance
 /// @description Fast, agile, low mass. Low survivability.
 function Stats_Preset_Fighter_Light(stats) {
-    stats.aircraft_acceleration     = 0.22;
-    stats.aircraft_max_speed        = 12;
-    stats.aircraft_stall_speed      = 1.5;
-    stats.aircraft_turn_rate        = 4;
-    stats.aircraft_turn_acceleration = 0.8;
-    stats.aircraft_aerodynamics     = 0.007;
+    stats.aircraft_acceleration     = 2;
+    stats.aircraft_max_speed        = 15;
+    stats.aircraft_stall_speed      = 4;
+    stats.aircraft_turn_rate        = 6;
+    stats.aircraft_turn_acceleration = 2;
+    stats.aircraft_aerodynamics     = 0.9;
     stats.aircraft_lift_coef        = 0.98;
-    stats.aircraft_mass             = 0.8;
-    stats.aircraft_brake_power      = 2.5;
+    stats.aircraft_mass             = 1;
+    stats.aircraft_brake_power      = 3;
 }
 
 /// @function Stats_Preset_Fighter_Heavy(stats)

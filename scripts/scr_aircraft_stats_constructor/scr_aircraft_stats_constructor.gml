@@ -16,30 +16,29 @@ function Aircraft_Stats() constructor {
 
     // --- Thrust & Speed ---
     // aircraft_acceleration: pixels added to velocity per step when thrusting
-    aircraft_acceleration   = 0.18;
+    aircraft_acceleration   = 0.5;
 
     // aircraft_max_speed: velocity cap in pixels per step
-    aircraft_max_speed      = 10;
+    aircraft_max_speed      = 15;
 
     // aircraft_stall_speed: below this speed, Apply_Lift produces zero lift
-    aircraft_stall_speed    = 2;
+    aircraft_stall_speed    = 5;
 
     // --- Aerodynamics ---
     // aircraft_aerodynamics: drag coefficient — higher = more drag, lower top speed
-    // This feeds into: drag = aerodynamics * speed²
-    // Keep this small. Even 0.01 is significant at high speeds.
-    aircraft_aerodynamics   = 0.008;
+    // This feeds into: drag = air resistance * aerodynamics * speed²
+    aircraft_aerodynamics   = 1;
 
     // aircraft_lift_coef: fraction of gravity cancelled at max speed [0.0 – 1.0]
     aircraft_lift_coef      = 0.95;
 
     // --- Rotation ---
     // aircraft_turn_rate: maximum degrees per step the aircraft can rotate
-    aircraft_turn_rate      = 3;
+    aircraft_turn_rate      = 4;
 
     // aircraft_turn_acceleration: degrees per step added to angular velocity each step
     // Lower = sluggish turning; higher = snappy turning
-    aircraft_turn_acceleration = 0.6;
+    aircraft_turn_acceleration = 1;
 
     // --- Gravity response ---
     aircraft_gravity_scale  = 1.0;

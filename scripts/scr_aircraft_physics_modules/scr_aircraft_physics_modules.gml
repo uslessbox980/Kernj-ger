@@ -95,8 +95,8 @@ function Apply_Lift(physics_state, aircraft_stats) {
     // How far are we between stall speed and max speed? (0.0 to 1.0)
 	
 	
-	var _horizontal_factor = abs(cos(degtorad(heading)));
-	var _speed_factor = clamp(speed / aircraft_max_speed, 0, 1);
+	var _horizontal_factor = abs(cos(degtorad(physics_state.heading)));
+	var _speed_factor = clamp(speed / aircraft_stats.aircraft_max_speed, 0, 1);
 	
 	var _lift_force = _horizontal_factor * (_speed_factor * aircraft_stats.aircraft_lift_coef* aircraft_stats.aircraft_gravity_scale);
 
@@ -125,7 +125,7 @@ function Apply_Thrust(physics_state, aircraft_stats, input_struct) {
     // lengthdir_x/y decompose a magnitude+angle into X and Y components.
     // lengthdir_y is negated because GMS2's Y axis is flipped vs standard math convention.
     physics_state.force_x += lengthdir_x(_thrust_force, physics_state.heading);
-    physics_state.force_y -= lengthdir_y(_thrust_force, physics_state.heading);
+    physics_state.force_y += lengthdir_y(_thrust_force, physics_state.heading);
 }
 
 // ============================================================
@@ -148,20 +148,20 @@ function Apply_Drag(physics_state, aircraft_stats) {
     // Base drag scales with speed squared (quadratic drag model).
     // aircraft_aerodynamics controls how "slippery" the vehicle is.
     // A higher value = more drag = lower effective top speed and faster braking.
-    var _drag = aircraft_stats.aircraft_aerodynamics * sqr(physics_state.speed);
+    var _drag = aircraft_stats.aircraft_aerodynamics * (sqr(physics_state.speed)/2) * global.air_resistance;
 
     // Over-speed drag: if somehow above max speed (e.g. from a steep dive),
     // pile on extra drag proportionally. This is a soft cap — not a hard clamp.
-    if (physics_state.speed > aircraft_stats.aircraft_max_speed) {
-        var _over_ratio = (physics_state.speed - aircraft_stats.aircraft_max_speed)
-                          / max(aircraft_stats.aircraft_max_speed, 1);
-        _drag += aircraft_stats.aircraft_aerodynamics * sqr(physics_state.speed) * _over_ratio * 4;
-    }
+    //if (physics_state.speed > aircraft_stats.aircraft_max_speed) {
+    //    var _over_ratio = (physics_state.speed - aircraft_stats.aircraft_max_speed)
+    //                      / max(aircraft_stats.aircraft_max_speed, 1);
+    //    _drag += aircraft_stats.aircraft_aerodynamics * sqr(physics_state.speed) * _over_ratio * 1;
+    // }
 
     // Drag always opposes the direction of movement.
     var _vel_angle = point_direction(0, 0, physics_state.velocity_x, physics_state.velocity_y);
     physics_state.force_x += lengthdir_x(-_drag, _vel_angle);
-    physics_state.force_y -= lengthdir_y(-_drag, _vel_angle);
+    physics_state.force_y += lengthdir_y(-_drag, _vel_angle);
 }
 
 
@@ -177,7 +177,7 @@ function Apply_Drag(physics_state, aircraft_stats) {
 /// @description Applies a drag force that opposes the current velocity direction.
 ///               Brake drag  — multiplied when brake_input is held; rapidly kills speed.
 function Apply_Air_Brake(physics_state, aircraft_stats, input_struct) {
-    if (physics_state.speed <= 6) exit;
+    if (physics_state.speed <= 10) exit;
 	
 	var _air_brake_force = 0
 	
@@ -188,7 +188,7 @@ function Apply_Air_Brake(physics_state, aircraft_stats, input_struct) {
     // Drag always opposes the direction of movement.
     var _vel_angle = point_direction(0, 0, physics_state.velocity_x, physics_state.velocity_y);
     physics_state.force_x += lengthdir_x(-_air_brake_force, _vel_angle);
-    physics_state.force_y -= lengthdir_y(-_air_brake_force, _vel_angle);
+    physics_state.force_y += lengthdir_y(-_air_brake_force, _vel_angle);
 }
 
 // ============================================================
