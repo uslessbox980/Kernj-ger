@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"scr_object_wiring_examples",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_object_wiring_examples",
+  "parent":{
+    "name":"Kernjäger",
+    "path":"Kernjäger.yyp",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
