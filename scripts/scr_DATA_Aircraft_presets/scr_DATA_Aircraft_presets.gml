@@ -23,13 +23,13 @@ function Stats_Preset_Fighter_Light(stats) {
 /// @param {Struct} stats  An Aircraft_Stats() instance
 /// @description Slower turns, higher mass, harder to stop.
 function Stats_Preset_Fighter_Heavy(stats) {
-    stats.aircraft_acceleration     = 0.14;
-    stats.aircraft_max_speed        = 9;
-    stats.aircraft_stall_speed      = 2.5;
-    stats.aircraft_turn_rate        = 2.2;
-    stats.aircraft_turn_acceleration = 0.35;
-    stats.aircraft_aerodynamics     = 0.010;
-    stats.aircraft_lift_coef        = 0.90;
-    stats.aircraft_mass             = 1.4;
+    stats.aircraft_acceleration     = 1;
+    stats.aircraft_max_speed        = 12;
+    stats.aircraft_stall_speed      = 3;
+    stats.aircraft_turn_rate        = 12;
+    stats.aircraft_turn_acceleration = 2;
+    stats.aircraft_aerodynamics     = 1;
+    stats.aircraft_lift_coef        = 0.99;
+    stats.aircraft_mass             = 1.5;
     stats.aircraft_brake_power      = 3.5;
 }

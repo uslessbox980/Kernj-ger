@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"scr_Aircraft_Rendering",
+  "%Name":"scr_aircraft_rendering",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"scr_Aircraft_Rendering",
+  "name":"scr_aircraft_rendering",
   "parent":{
     "name":"Rendering Functions",
     "path":"folders/_SCRIPTS/Graphics CORE/Rendering Functions.yy",

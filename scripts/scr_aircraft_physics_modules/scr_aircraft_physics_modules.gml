@@ -224,7 +224,7 @@ function Apply_Rotation(physics_state, aircraft_stats, input_struct) {
 
     // Step angular_velocity toward its target by turn_acceleration per step.
     // This is the "inertia" — the aircraft can't change direction instantly.
-    physics_state.angular_velocity = approach(
+    physics_state.angular_velocity = T_Approach(
         physics_state.angular_velocity,
         _target_angular_vel,
         aircraft_stats.aircraft_turn_acceleration
