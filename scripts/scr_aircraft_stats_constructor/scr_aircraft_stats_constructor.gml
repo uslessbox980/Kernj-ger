@@ -13,6 +13,17 @@
 /// @function Aircraft_Stats()
 /// @description Default stats for a generic aircraft. Override per-prefab.
 function Aircraft_Stats() constructor {
+	
+	hp = 1000;
+	shield = 200;
+	
+	kinetic_res_flat = 10;
+	explosion_res_flat = 5;
+	energy_res_flat = 0;
+	
+	kinetic_res_percent = 0.05;
+	explosion_res_percent = 0.1;
+	energy_res_percent = 0;
 
     // --- Thrust & Speed ---
     // aircraft_acceleration: pixels added to velocity per step when thrusting
